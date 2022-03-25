@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+        <bean class="springtry.Address" id="adr">
+		<property name="dno" value="302" />
+		<property name="street" value="MG Road" />
+		<property name="state" value="TN" />
+		</bean>
+		 
+		<bean class="springtry.Address" id ="a">
+		<constructor-arg value="34"/>
+		<constructor-arg value="MG Street"/>
+		<constructor-arg value="Punjab"/>
+		</bean>
+		
+		<bean class="springtry.Country" id="country">
+		<property name="name" value="India" />
+		<property name="states">
+			<list>
+				<value>Karnataka</value>
+				<value>Kerala</value>
+				<value>Tamil Nadu</value>
+			</list>
+		</property>
+		</bean>
+		
+		<bean class="springtry.Person" id="p" autowire="byName">
+		<property name="name" value="Priyanka" />
+	
+		</bean>
+        
+           
+</beans>
