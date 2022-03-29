@@ -60,8 +60,8 @@ public class PostServiceImpl implements iPostService{
 	public List<CommentDto> searchCommentByPid(int pid) {
 		// TODO Auto-generated method stub
 		
-		return proxy.findByPId(pid);
-		//return template.getForObject("http://localhost:8083/getBy/Pid/"+pid, List.class);
+		//return proxy.findByPId(pid);
+		return template.getForObject("http://COMMENT-SERVICE/getBy/Pid/"+pid, List.class);
 	}
 	
 
