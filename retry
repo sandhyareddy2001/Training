@@ -1,0 +1,49 @@
+[4:05 PM] Praveen Kumar  G S
+please implement the @Retry annotation
+
+[4:05 PM] Praveen Kumar  G S
+add the below dependency in the pom.xml file
+
+[4:06 PM] Praveen Kumar  G S
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+<dependency>
+<groupId>io.github.resilience4j</groupId>
+<artifactId>resilience4j-spring-boot2</artifactId>
+</dependency>
+
+[4:06 PM] Praveen Kumar  G S
+Add the below properties in application.properties file
+
+[4:06 PM] Praveen Kumar  G S
+esilience4j.retry.instances.sample-api.max-attempts=5
+resilience4j.retry.instances.sample-api.waitDuration=1s
+resilience4j.retry.instances.sample-api.enableExponentialBackoff=true
+
+[4:07 PM] Praveen Kumar  G S
+Add the below RestController class in the project and run the respective proprey
+
+[4:07 PM] Praveen Kumar  G S
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;import io.github.resilience4j.retry.annotation.Retry;@RestController
+@RequestMapping("rest")
+public class CircuitBreaker {
+private Logger logger = LoggerFactory.getLogger(CircuitBreaker.class); @GetMapping("/test")
+@Retry(name = "sample-api")
+public String sampleTest() {
+logger.info("test api is called....");
+ResponseEntity<String> forEntity = new RestTemplate().getForEntity("http://localhost:8432", String.class);
+return forEntity.getBody();
+}}
+
+[4:07 PM] Praveen Kumar  G S
+I will join back with you in 4.30pm
+
