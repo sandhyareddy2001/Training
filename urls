@@ -29,3 +29,8 @@ select a.account_number, (a.opening_balance+SUM(t.transaction_amount)) Deposit_A
 a join transaction_details t on a.account_number=t.account_number where t.transaction_type='DEPOSIT' GROUP BY a.account_number order by a.account_number;
 
 select b.branch_city, ifnull(count(b.branch_city),0) from account_master a right join branch_master b on a.branch_id=b.branch_id group by b.branch_city;
+
+
+
+select c.customer_number, c.firstname, c.customer_city, b.branch_city from customer_master c join account_master a on c.customer_number=a.customer_number join branch_master b on b.branch_id=a.branch_id where b.branch_city!=c.customer_city;
+
