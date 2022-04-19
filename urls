@@ -28,4 +28,4 @@ select a.customer_number,t.transaction_type, count(*) Trans_Count from transacti
 select a.account_number, (a.opening_balance+SUM(t.transaction_amount)) Deposit_Amount from account_master 
 a join transaction_details t on a.account_number=t.account_number where t.transaction_type='DEPOSIT' GROUP BY a.account_number order by a.account_number;
 
-select b.branch_city, count(*) from account_master a join branch_master b on a.branch_id=b.branch_id group by b.branch_city;
+select b.branch_city, ifnull(count(b.branch_city),0) from account_master a right join branch_master b on a.branch_id=b.branch_id group by b.branch_city;
