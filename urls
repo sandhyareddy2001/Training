@@ -25,6 +25,11 @@ select a.customer_number,t.transaction_type, count(*) Trans_Count from transacti
 
 
 
+
+
+
+
+
 select a.account_number, (a.opening_balance+SUM(t.transaction_amount)) Deposit_Amount from account_master 
 a join transaction_details t on a.account_number=t.account_number where t.transaction_type='DEPOSIT' GROUP BY a.account_number order by a.account_number;
 
@@ -36,4 +41,52 @@ select c.customer_number, c.firstname, c.customer_city, b.branch_city from custo
 
 
 select customer_number from loan_details where customer_number in(select customer_number from customer_master where customer_number not in (select customer_number from account_master));
+
+
+
+
+
+
+
+
+
+
+
+create table air_ticket_info (
+ticket_id varchar(10), 
+profile_id varchar(10), 
+flight_id varchar(10), 
+flight_departure_date date,
+status varchar(10),
+constraint pk_ticket_id primary key(ticket_id)
+);
+
+create table air_flight_details(
+flight_id varchar(10),
+flight_departure_date date,
+price decimal(8,2),
+available_seats int(11)
+);
+
+create table air_flight(
+flight_id varchar(10),
+airline_id varchar(10),
+airline_name varchar(30),
+from_location varchar(20),
+to_location varchar(20),
+departure_time time,
+arrival_time time,
+duration time,
+total_seats int(11),
+constraint pk_flight_id primary key(flight_id)
+);
+
+create table air_credit_card_details(
+profile_id varchar(10),
+card_number bigint(16),
+card_type varchar(10),
+expiration_month int(2),
+expiration_year int(4)
+);
+
 
