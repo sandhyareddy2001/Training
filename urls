@@ -5,4 +5,10 @@ https://www.dataaccess.com/webservicesserver/numberconversion.wso?WSDL 
 http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL 
 http://www.webservicex.com/globalweather.asmx?wsdl
 
+select c.customer_number, c.firstname,a.account_number, a.amount_status  from account_master a join customer_master c on c.customer_number= a.customer_number where a.amount_status='TERMINATED' order by c.customer_number, a.account_number;
 
+SELECT COUNT(*) Count_customer FROM CUSTOMER_MASTER WHERE CUSTOMER_NUMBER NOT IN(SELECT CUSTOMER_NUMBER FROM ACCOUNT_MASTER);
+
+select a.customer_number,t.transaction_type, count(*) Trans_Count from transaction_details t join account_master a on t.account_number=a.account_number where a.customer_number like '%001' group by t.transaction_type order by t.transaction_type;
+  
+  select a.customer_number,c.firstname, count(a.account_number) from account_master a inner join customer_master c on a.customer_number= c.customer_number group by a.customer_number having count(a.account_number)>1 order by c.firstname;
