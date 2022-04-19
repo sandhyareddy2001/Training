@@ -1,0 +1,63 @@
+
+
+create table air_ticket_info (
+ticket_id varchar(10), 
+profile_id varchar(10), 
+flight_id varchar(10), 
+flight_departure_date date,
+status_ varchar(10),
+constraint pk_ticket_id primary key(ticket_id),
+constraint dpearture_current_date_constraint check (flight_departure_date > getdate()) 
+);
+
+create table air_flight_details(
+flight_id varchar(10),
+flight_departure_date date,
+price decimal(8,2),
+available_seats int(11),
+constraint flight_id_constraint check (flight_id between '3170' and '3180')
+);
+
+create table air_flight(
+flight_id varchar(10),
+airline_id varchar(10),
+airline_name varchar(30),
+from_location varchar(20),
+to_location varchar(20),
+departure_time time,
+arrival_time time,
+duration time,
+total_seats int(11),
+constraint pk_flight_id primary key(flight_id)
+);
+
+
+create table air_credit_card_details(
+profile_id varchar(10),
+card_number bigint(16),
+card_type varchar(10),
+expiration_month int(2),
+expiration_year int(4),
+constraint card_type_debit_credit check(card_type in ('DEBIT', 'CREDIT'))
+);
+create table air_passenger_profile(
+profile_id varchar(10),
+password_ varchar(10),
+first_name varchar(10) not null,
+last_name varchar(10),
+address varchar(100),
+mobile_number bigint(10),
+email_id varchar(30),
+constraint pk_profile_id primary key(profile_id),
+constraint email_id_format check (email_id like '%_@_%.__%'),
+constraint name_no_num_constraint check (first_name not like '%*[0-9]%' and last_name not like '%^[0-9]%')
+);
+
+
+show tables;
+
+
+
+
+
+
