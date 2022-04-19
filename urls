@@ -34,3 +34,6 @@ select b.branch_city, ifnull(count(b.branch_city),0) from account_master a right
 
 select c.customer_number, c.firstname, c.customer_city, b.branch_city from customer_master c join account_master a on c.customer_number=a.customer_number join branch_master b on b.branch_id=a.branch_id where b.branch_city!=c.customer_city;
 
+
+select customer_number from loan_details where customer_number in(select customer_number from customer_master where customer_number not in (select customer_number from account_master));
+
