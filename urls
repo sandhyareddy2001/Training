@@ -21,3 +21,11 @@ SELECT COUNT(*) Count_customer FROM CUSTOMER_MASTER WHERE CUSTOMER_NUMBER NOT IN
 select a.customer_number,t.transaction_type, count(*) Trans_Count from transaction_details t join account_master a on t.account_number=a.account_number where a.customer_number like '%001' group by t.transaction_type order by t.transaction_type;
   
   select a.customer_number,c.firstname, count(a.account_number) from account_master a inner join customer_master c on a.customer_number= c.customer_number group by a.customer_number having count(a.account_number)>1 order by c.firstname;
+
+
+
+
+select a.account_number, (a.opening_balance+SUM(t.transaction_amount)) Deposit_Amount from account_master 
+a join transaction_details t on a.account_number=t.account_number where t.transaction_type='DEPOSIT' GROUP BY a.account_number order by a.account_number;
+
+select b.branch_city, count(*) from account_master a join branch_master b on a.branch_id=b.branch_id group by b.branch_city;
